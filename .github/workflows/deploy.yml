@@ -1,15 +1,12 @@
 name: Deploy OpenAPI to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build-and-deploy:
+  pr-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -34,15 +31,11 @@ jobs:
           mkdir -p public
 
       - name: Build OpenAPI
-        run: |
-          npm run build
-          echo "=== tsp-output 内容 ==="
-          ls -R tsp-output
-          echo "=== public/schema 内容 ==="
-          ls -R public/schema
+        run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (PR)
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          publish_branch: pr-${{ github.event.number }}-gh-pages
