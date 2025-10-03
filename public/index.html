@@ -22,8 +22,13 @@
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
 
   <script>
+    // ローカル作業時と GitHub Pages デプロイ時で URL を切り替え
+    const yamlUrl = window.location.hostname === 'localhost'
+      ? 'schema/openapi.yaml'  // ローカルサーバーでの相対パス
+      : 'https://ray03j.github.io/openapi-challecara/schema/openapi.yaml'; // GitHub Pages 用
+
     const ui = SwaggerUIBundle({
-      url: "schema/openapi.yaml",
+      url: yamlUrl,
       dom_id: '#swagger-ui',
       presets: [
         SwaggerUIBundle.presets.apis,
