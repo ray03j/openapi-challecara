@@ -34,7 +34,12 @@ jobs:
           mkdir -p public
 
       - name: Build OpenAPI
-        run: npm run build
+        run: |
+          npm run build
+          echo "=== tsp-output 内容 ==="
+          ls -R tsp-output
+          echo "=== public/schema 内容 ==="
+          ls -R public/schema
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.9.3
