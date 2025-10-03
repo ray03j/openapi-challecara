@@ -39,3 +39,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: pr-${{ github.event.number }}-gh-pages
+
+      - name: Show deployed URL
+        run: |
+          echo "PR preview URL:"
+          echo "https://ray03j.github.io/openapi-challecara/pr-${{ github.event.number }}-gh-pages/"
