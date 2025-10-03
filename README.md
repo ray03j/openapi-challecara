@@ -9,6 +9,8 @@
 `openapi-challecara` は TypeSpec を使った OpenAPI 定義生成および Express サーバーでの表示を行うプロジェクトです。
 TypeSpec (旧名称 Cadl) を用いて API を定義し、Swagger UI で確認できます。
 
+https://ray03j.github.io/openapi-challecara/
+
 ## 必要環境
 
 * Node.js 18 以上
