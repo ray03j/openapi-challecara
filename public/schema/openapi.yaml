@@ -1,0 +1,664 @@
+openapi: 3.1.0
+info:
+  title: Book Management Service
+  description: 本の作成・更新・削除・取得を行うAPI
+  version: 0.0.0
+tags: []
+paths:
+  /books:
+    get:
+      operationId: Books_list
+      description: すべての本の一覧を取得します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
+                  - $ref: '#/components/schemas/Error'
+    post:
+      operationId: Books_create
+      description: 新しい本を作成します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Book'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        description: 作成する本の情報
+  /books/{id}:
+    get:
+      operationId: Books_read
+      description: 指定したIDの本の詳細情報を取得します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 取得する本のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Book'
+                  - $ref: '#/components/schemas/Error'
+    patch:
+      operationId: Books_update
+      description: 指定したIDの本情報を部分更新します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 更新する本のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Book'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/BookMergePatchUpdate'
+        description: 更新する本の情報（部分更新）
+    delete:
+      operationId: Books_delete
+      description: 指定したIDの本を削除します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 削除する本のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+  /chat-messages:
+    get:
+      operationId: ChatMessages_list
+      description: すべてのチャットメッセージの一覧を取得します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/ChatMessage'
+                  - $ref: '#/components/schemas/Error'
+    post:
+      operationId: ChatMessages_create
+      description: 新しいチャットメッセージを作成します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ChatMessage'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessage'
+        description: 作成するチャットメッセージの情報
+  /chat-messages/{id}:
+    get:
+      operationId: ChatMessages_read
+      description: 指定したIDのチャットメッセージ詳細を取得します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 取得するメッセージのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ChatMessage'
+                  - $ref: '#/components/schemas/Error'
+    patch:
+      operationId: ChatMessages_update
+      description: 指定したIDのチャットメッセージ情報を部分更新します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 更新するメッセージのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ChatMessage'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageMergePatchUpdate'
+        description: 更新するチャットメッセージ情報（部分更新）
+    delete:
+      operationId: ChatMessages_delete
+      description: 指定したIDのチャットメッセージを削除します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 削除するメッセージのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+  /episodes:
+    get:
+      operationId: Episodes_list
+      description: すべてのエピソードの一覧を取得します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Episode'
+                  - $ref: '#/components/schemas/Error'
+    post:
+      operationId: Episodes_create
+      description: 新しいエピソードを作成します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Episode'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Episode'
+        description: 作成するエピソードの情報
+  /episodes/{id}:
+    get:
+      operationId: Episodes_read
+      description: 指定したIDのエピソード詳細を取得します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 取得するエピソードのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Episode'
+                  - $ref: '#/components/schemas/Error'
+    patch:
+      operationId: Episodes_update
+      description: 指定したIDのエピソード情報を部分更新します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 更新するエピソードのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Episode'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/EpisodeMergePatchUpdate'
+        description: 更新するエピソード情報（部分更新）
+    delete:
+      operationId: Episodes_delete
+      description: 指定したIDのエピソードを削除します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 削除するエピソードのID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+  /materials:
+    get:
+      operationId: Materials_list
+      description: すべての参考資料の一覧を取得します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Material'
+                  - $ref: '#/components/schemas/Error'
+    post:
+      operationId: Materials_create
+      description: 新しい資料を作成します
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Material'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Material'
+        description: 作成する資料の情報
+  /materials/{id}:
+    get:
+      operationId: Materials_read
+      description: 指定したIDの資料詳細を取得します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 取得する資料のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Material'
+                  - $ref: '#/components/schemas/Error'
+    patch:
+      operationId: Materials_update
+      description: 指定したIDの資料情報を部分更新します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 更新する資料のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/Material'
+                  - $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/MaterialMergePatchUpdate'
+        description: 更新する資料情報（部分更新）
+    delete:
+      operationId: Materials_delete
+      description: 指定したIDの資料を削除します
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 削除する資料のID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+components:
+  schemas:
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - coverEmoji
+        - updatedAt
+        - sourceCount
+        - archived
+        - content
+      properties:
+        id:
+          type: string
+          description: 本の一意のID
+        title:
+          type: string
+          description: 本のタイトル
+        coverEmoji:
+          type: string
+          description: 本の表紙絵文字
+        updatedAt:
+          type: integer
+          format: int64
+          description: 最終更新日時（UNIXタイムスタンプ）
+        sourceCount:
+          type: integer
+          format: int32
+          description: 本に紐づくソース数
+        archived:
+          type: boolean
+          description: アーカイブ済みかどうか
+        content:
+          type: string
+          description: 本の内容
+      description: 本の情報を管理するモデル
+    BookMergePatchUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 本の一意のID
+        title:
+          type: string
+          description: 本のタイトル
+        coverEmoji:
+          type: string
+          description: 本の表紙絵文字
+        updatedAt:
+          type: integer
+          format: int64
+          description: 最終更新日時（UNIXタイムスタンプ）
+        sourceCount:
+          type: integer
+          format: int32
+          description: 本に紐づくソース数
+        archived:
+          type: boolean
+          description: アーカイブ済みかどうか
+        content:
+          type: string
+          description: 本の内容
+      description: ''
+    ChatMessage:
+      type: object
+      required:
+        - id
+        - bookId
+        - role
+        - content
+        - ts
+      properties:
+        id:
+          type: string
+          description: チャットメッセージの一意のID
+        bookId:
+          type: string
+          description: このメッセージが属する本のID
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+          description: メッセージの送信者。ユーザーかアシスタントか
+        content:
+          type: string
+          description: メッセージの内容
+        ts:
+          type: integer
+          format: int64
+          description: メッセージの送信日時（UNIXタイムスタンプ）
+      description: 本に紐づくチャットメッセージの情報を表すモデル
+    ChatMessageMergePatchUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: チャットメッセージの一意のID
+        bookId:
+          type: string
+          description: このメッセージが属する本のID
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+          description: メッセージの送信者。ユーザーかアシスタントか
+        content:
+          type: string
+          description: メッセージの内容
+        ts:
+          type: integer
+          format: int64
+          description: メッセージの送信日時（UNIXタイムスタンプ）
+      description: ''
+    Episode:
+      type: object
+      required:
+        - id
+        - bookId
+        - title
+        - content
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: エピソードの一意のID
+        bookId:
+          type: string
+          description: このエピソードが属する本のID
+        title:
+          type: string
+          description: エピソードのタイトル
+        content:
+          type: string
+          description: エピソードの内容
+        createdAt:
+          type: integer
+          format: int64
+          description: 作成日時（UNIXタイムスタンプ）
+      description: 本に紐づくエピソードの情報を表すモデル
+    EpisodeMergePatchUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: エピソードの一意のID
+        bookId:
+          type: string
+          description: このエピソードが属する本のID
+        title:
+          type: string
+          description: エピソードのタイトル
+        content:
+          type: string
+          description: エピソードの内容
+        createdAt:
+          type: integer
+          format: int64
+          description: 作成日時（UNIXタイムスタンプ）
+      description: ''
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+      description: エラー情報を表すモデル
+    Material:
+      type: object
+      required:
+        - id
+        - bookId
+        - title
+        - content
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: 資料の一意のID
+        bookId:
+          type: string
+          description: この資料が属する本のID
+        title:
+          type: string
+          description: 資料のタイトル
+        content:
+          type: string
+          description: 資料の内容
+        createdAt:
+          type: integer
+          format: int64
+          description: 作成日時（UNIXタイムスタンプ）
+      description: 本に紐づく参考資料の情報を表すモデル
+    MaterialMergePatchUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 資料の一意のID
+        bookId:
+          type: string
+          description: この資料が属する本のID
+        title:
+          type: string
+          description: 資料のタイトル
+        content:
+          type: string
+          description: 資料の内容
+        createdAt:
+          type: integer
+          format: int64
+          description: 作成日時（UNIXタイムスタンプ）
+      description: ''
+    ProjectFile:
+      type: object
+      required:
+        - id
+        - bookId
+        - title
+        - content
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          description: プロジェクトファイルの一意のID
+        bookId:
+          type: string
+          description: このファイルが属する本のID
+        title:
+          type: string
+          description: ファイルのタイトル
+        content:
+          type: string
+          description: ファイルの内容
+        createdAt:
+          type: integer
+          format: int64
+          description: 作成日時（UNIXタイムスタンプ）
+        updatedAt:
+          type: integer
+          format: int64
+          description: 最終更新日時（UNIXタイムスタンプ）
+      description: 本に紐づくプロジェクトファイルの情報を表すモデル
