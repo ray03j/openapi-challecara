@@ -1,12 +1,15 @@
 name: Deploy OpenAPI to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  pr-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -33,14 +36,8 @@ jobs:
       - name: Build OpenAPI
         run: npm run build
 
-      - name: Deploy to GitHub Pages (PR)
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: pr-${{ github.event.number }}-gh-pages
-
-      - name: Show deployed URL
-        run: |
-          echo "PR preview URL:"
-          echo "https://ray03j.github.io/openapi-challecara/pr-${{ github.event.number }}-gh-pages/"
