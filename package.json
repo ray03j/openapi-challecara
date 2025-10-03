@@ -16,7 +16,7 @@
     "ws": "^8.18.3"
   },
   "scripts": {
-    "build": "tsp compile . --emit @typespec/openapi3 --output-dir tsp-output && mkdir -p public/schema && cp tsp-output/schema/openapi.yaml public/schema/",
+    "build": "tsp compile . --emit @typespec/openapi3 --output-dir tsp-output && mkdir -p docs/schema && cp tsp-output/schema/openapi.yaml docs/schema/",
     "watch": "tsp compile . --emit @typespec/openapi3 --output-dir tsp-output --watch",
     "start": "nodemon server.js"
   },

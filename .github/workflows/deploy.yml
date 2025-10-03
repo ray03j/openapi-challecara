@@ -29,10 +29,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean public folder
+      - name: Clean docs folder
         run: |
-          rm -rf public
-          mkdir -p public
+          rm -rf docs
+          mkdir -p docs
 
       - name: Build OpenAPI
         run: npm run build
@@ -41,4 +41,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./docs
