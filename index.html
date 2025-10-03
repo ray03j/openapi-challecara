@@ -4,17 +4,30 @@
   <meta charset="UTF-8">
   <title>OpenAPI Viewer</title>
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #swagger-ui {
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
   <div id="swagger-ui"></div>
+
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+
   <script>
     const ui = SwaggerUIBundle({
-      url: "tsp-output/schema/openapi.yaml", // ここを YAML のパスに
+      url: "./tsp-output/schema/openapi.yaml",
       dom_id: '#swagger-ui',
       presets: [
         SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
+        SwaggerUIStandalonePreset
       ],
       layout: "BaseLayout"
     });
