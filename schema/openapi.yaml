@@ -364,32 +364,6 @@ paths:
                 anyOf:
                   - $ref: '#/components/schemas/Material'
                   - $ref: '#/components/schemas/Error'
-    patch:
-      operationId: Materials_update
-      description: 指定したIDの資料情報を部分更新します
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: 更新する資料のID
-          schema:
-            type: string
-      responses:
-        '200':
-          description: The request has succeeded.
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/Material'
-                  - $ref: '#/components/schemas/Error'
-      requestBody:
-        required: true
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/MaterialMergePatchUpdate'
-        description: 更新する資料情報（部分更新）
     delete:
       operationId: Materials_delete
       description: 指定したIDの資料を削除します
@@ -611,26 +585,6 @@ components:
           format: int64
           description: 作成日時（UNIXタイムスタンプ）
       description: 本に紐づく参考資料の情報を表すモデル
-    MaterialMergePatchUpdate:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 資料の一意のID
-        bookId:
-          type: string
-          description: この資料が属する本のID
-        title:
-          type: string
-          description: 資料のタイトル
-        content:
-          type: string
-          description: 資料の内容
-        createdAt:
-          type: integer
-          format: int64
-          description: 作成日時（UNIXタイムスタンプ）
-      description: ''
     ProjectFile:
       type: object
       required:
