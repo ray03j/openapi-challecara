@@ -235,17 +235,6 @@ interface Materials {
     body: Material
   ): Material | Error;
 
-  @patch
-  @doc("指定したIDの資料情報を部分更新します")
-  update(
-    @path
-    @doc("更新する資料のID")
-    id: string,
-    @body
-    @doc("更新する資料情報（部分更新）")
-    body: MergePatchUpdate<Material>
-  ): Material | Error;
-
   @delete
   @doc("指定したIDの資料を削除します")
   delete(
