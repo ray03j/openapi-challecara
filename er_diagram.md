@@ -13,12 +13,15 @@ erDiagram
         datetime deleted_at "soft delete"
     }
 
-    Episode {
-        string id PK
-        string bookId FK
-        string title
-        string content
-        number createdAt
+    episodes {
+        char(36) id PK "UUIDv7"
+        char(36) book_id FK "NOT NULL"
+        varchar(255) title "NOT NULL"
+        text content
+        int episode_no
+        datetime created_at
+        datetime updated_at
+        datetime deleted_at "soft delete"
     }
 
     materials {
