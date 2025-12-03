@@ -21,12 +21,15 @@ erDiagram
         number createdAt
     }
 
-    Material {
-        string id PK
-        string bookId FK
-        string title
-        string content
-        number createdAt
+    materials {
+        char(36) id PK "UUIDv7"
+        char(36) book_id FK "NOT NULL"
+        varchar(255) title "NOT NULL"
+        varchar(50) material_type "character/world/plot/etc"
+        text content
+        datetime created_at
+        datetime updated_at
+        datetime deleted_at "soft delete"
     }
 
     ChatMessage {
