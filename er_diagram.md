@@ -1,14 +1,16 @@
 ```mermaid
 erDiagram
-    Book {
-        string id PK
-        string title
-        string coverEmoji
-        number updatedAt
-        number sourceCount
-        boolean archived
-        string content
-        string activeFileId FK
+    books {
+        char(36) id PK "UUIDv7"
+        varchar(255) title "NOT NULL"
+        text description
+        char(36) author_id "NOT NULL (future use)"
+        varchar(500) cover_image
+        varchar(100) genre
+        varchar(50) status "DEFAULT 'draft'"
+        datetime created_at
+        datetime updated_at
+        datetime deleted_at "soft delete"
     }
 
     Episode {
