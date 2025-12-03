@@ -1,7 +1,3 @@
-以下のような手順を README に書くとわかりやすいです。`openapi-challecara` プロジェクトをセットアップして実行する方法を整理しました。
-
----
-
 # openapi-challecara
 
 ## 概要
