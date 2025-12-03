@@ -36,9 +36,7 @@ erDiagram
     }
 
 
-    Book ||--o{ ProjectFile : has
-    Book ||--o{ Episode : has
-    Book ||--o{ Material : has
-    Book ||--o{ ChatMessage : has
+    books ||--o{ episodes : "has many"
+    books ||--o{ materials : "has many"
 
 ```
