@@ -11,15 +11,6 @@ erDiagram
         string activeFileId FK
     }
 
-    ProjectFile {
-        string id PK
-        string bookId FK
-        string title
-        string content
-        number createdAt
-        number updatedAt
-    }
-
     Episode {
         string id PK
         string bookId FK
