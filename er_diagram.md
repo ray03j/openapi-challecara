@@ -35,13 +35,6 @@ erDiagram
         datetime deleted_at "soft delete"
     }
 
-    ChatMessage {
-        string id PK
-        string bookId FK
-        string role
-        string content
-        number ts
-    }
 
     Book ||--o{ ProjectFile : has
     Book ||--o{ Episode : has
